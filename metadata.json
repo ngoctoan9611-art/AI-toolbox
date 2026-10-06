@@ -1,0 +1,6 @@
+{
+  "name": "AI Toolbox - The Dewey Schools",
+  "description": "Cẩm nang công cụ AI học thuật dành cho giáo viên và học sinh Dewey Schools hỗ trợ thiết kế hoạt động học tập, tối ưu hóa câu lệnh và giải đáp thắc mắc giảng dạy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

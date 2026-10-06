@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { 
+      return isSignedIn() && (
+        request.auth.token.email.lower() == 'ngoctoan9611@gmail.com'
+      );
+    }
+    function isValidId(id) { return id is string && id.size() <= 128; }
+    function incoming() { return request.resource.data; }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Contributions collection
+    match /contributions/{contribId} {
+      allow read: if isAdmin();
+      allow create: if true; 
+      allow update, delete: if isAdmin();
+    }
+
+    // Stats collection
+    match /stats/{docId} {
+      allow read: if true;
+      allow update: if true;
+      allow create: if docId == 'global';
+    }
+  }
+}

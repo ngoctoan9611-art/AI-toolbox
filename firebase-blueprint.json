@@ -1,0 +1,33 @@
+{
+  "entities": {
+    "Contribution": {
+      "title": "Contribution",
+      "description": "User suggested tools or website improvements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["tool", "website"] },
+        "name": { "type": "string" },
+        "link": { "type": "string" },
+        "reason": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "type", "name", "timestamp"]
+    },
+    "Stat": {
+      "title": "Stat",
+      "description": "System usage statistics",
+      "type": "object",
+      "properties": {
+        "visits": { "type": "number" },
+        "questions": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/stats/global": {
+      "schema": "Stat",
+      "description": "Global statistics document"
+    }
+  }
+}
